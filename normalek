@@ -1,0 +1,40 @@
+l={'r':4}
+k=dict({'r+1' : 5})
+m=dict(l)
+print(l)
+print(k)
+print(m)
+print(m is l)
+print(k is m)
+print(l is k)
+h={'a': 1, 'c': 3}
+h["b"]="2"
+print(h)
+#del h["c"]
+print(h)
+print('b' in h)
+print('c' in h)
+cy={'Russia': 'Moscow', 'China': 'Beijing', 'USA': 'Washington'}
+z=cy.values()
+print(z)
+k=cy.keys()
+print(k)
+print(cy.items())
+f={'France': 'Paris'}
+cy.update(f)
+print(cy)
+print('France' in cy)
+for t in cy:
+    print(t,cy[t])
+
+
+
+def so(r):
+    s=3,14*r**2
+    return s
+def sp(a,b):
+    d=a*b
+    return d
+useless={'pryam':sp(1,2), 'okr':so(1)}
+x='pryam'
+print(useless[x])
