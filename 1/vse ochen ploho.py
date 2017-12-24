@@ -28,9 +28,8 @@ class KM:
     def uroboros(self,t):
         for i in range(sl):
             for j in range(sl):
-             print(t[i][j])
-             if(j==sl):
-                print(\n)
+                print(t[i][j], end=' ')
+                print()
     def nu_ti_i_petushara(self,other):
         #s=0
         #s1=0
