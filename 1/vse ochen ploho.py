@@ -24,22 +24,11 @@ b1 = np.sin(2 * theta1) / (4 * sigma_x1**2) - np.sin(2 * theta1) / (4 * sigma_y1
 c1 = -np.sin(theta1)**2 / (2 * sigma_x1**2) + np.cos(theta1)**2 / (2 * sigma_y1**2)
 coords[:,2] = amp1 * np.exp(-(a1 * coords[:,0]**2 - 2 * b1 * coords[:,0]*coords[:,1] + c1 * coords[:,1]**2)) # z coord
 Z[1,:] = coords[:,2]
-ax.scatter(X,Y,Z)
-ax.plot_surface(coords[:,0], coords[:,0], coords[:,2],  s=1, c='k')
+ax.plot_surface(X,Y,Z)
+ax.scatter(coords[:,0], coords[:,0], coords[:,2],  s=1, c='k')
 ax.set_xlabel('X axis')
 ax.set_ylabel('Y axis')
 ax.set_zlabel('Z axis')
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -64,9 +53,9 @@ a = np.cos(theta)**2 / (2 * sigma_x**2) + np.sin(theta)**2 / (2 * sigma_y**2)
 b = np.sin(2 * theta) / (4 * sigma_x**2) - np.sin(2 * theta) / (4 * sigma_y**2)
 c = -np.sin(theta)**2 / (2 * sigma_x**2) + np.cos(theta)**2 / (2 * sigma_y**2)
 coords[:,2] = amp * np.exp(-(a * coords[:,0]**2 - 2 * b * coords[:,0]*coords[:,1] + c * coords[:,1]**2)) # z coord
-Z[1,:] = coords[:,2]
-ax.scatter(X,Y,Z)
-ax.plot_surface(coords[:,0], coords[:,0], coords[:,2],  s=1, c='red')
+Z[1,:]= coords[:,2]
+ax.plot_surface(X,Y,Z)
+ax.scatter(coords[:,0], coords[:,0], coords[:,2],  s=1, c='red')
 ax.set_xlabel('X axis')
 ax.set_ylabel('Y axis')
 ax.set_zlabel('Z axis')
