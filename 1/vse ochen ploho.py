@@ -1,108 +1,73 @@
-import random
-#r=1=>massiv-random
-#r=0=>massivmakesbyhands
-class KM:
-    count=0
-    sumx=0
-    def __init__(self,r,sl,t=0):  #t=0 because of python quarrels  witnout this
-        self.r=r
-        self.sl=sl
-        self.t=prosto_hernya(self.r,self.sl)
-        KM.count += 1
-    @property
-    def prosto_kakoito_kapets(self):
-        return self.count
-        #standart shit, but                                  #all right, but after!!!
-    def riba_nevkusnaya(self,t,sl):
-        sum=0
-        #sum1=0
-        for i in range(sl):
-            for j in range(sl):
-                sum=sum+t[i][i]
-            #elif (i+j==2*i): # it is not main diagonal
-                 #sum1=sum1+a[i][j]
-    #def __str__(self):
-        #for i in :
-             #print(' '.join([str(j) for j in i]))
-        return sum
-    def uroboros(self,t):
-        for i in range(sl):
-            for j in range(sl):
-                print(t[i][j], end=' ')
-                print()
-    def nu_ti_i_petushara(self,other):
-        #s=0
-        #s1=0
-        #for i in range(sl):
-            #for j in range(sl):
-                #s=s+t[i][j]
-        #for i in range(s2):
-            #for j in range(s2):
-                #s1=s1+b[i][j]
-        if(self.sumx>other.sumx):
-            print('first M is bigger')
-        elif(self.sumx>other.sumx):
-            print('second M is bigger')
-        elif(self.sumx==other.sumx):
-            print('same')
-    def ti_cho_gay_BROOOO(self,t,sl):
-        d = []
-        for i,m in range(sl):
-            for j,n in range(sl):
-                if (i+j==m+n):
-                    d=t[i][j]        # or  d.append(t[i][j])
-                    e=t[n][m]     # or  e.append(t[n][m])
-                    t[n][m]=d        # or t[n][m].append(d)
-                    t[i][j]=e       # or  t[i][j].append(e)
-        for f in range(sl):
-            for x in range(sl):
-                d[f][x]=t[f][x]  # or  d.append(t)  or d[f][x].append(t[f][x])
-        return d
-    def loshped(self,a):
-        for i in a:
-            print(' '.join([str(j) for j in i]))
-    def shakal(self,t,b,sl,sl2):
-        h=[]
-        if (sl==sl2):
-            for i,m,k in range(sl):
-                for j,n,p in range(sl):
-                    h[k][p].append(t[i][j]+b[m][n]) # or  h.append(t+b)
-        else:
-            print('ti tupoi chto li '
-                  'matritsi takto raznogo razmera '
-                  'nu kapets prosto slov net')
-        return h
-    def nu_prosto_na_desyatochku(self,t,sl):   # or k=prosto_hernya(r,sl)
-        for i in range(sl):
-            for j in range(sl):
-                sumx=sum+t[i][j]          #sumx=sumx+t[i][j]
-        return sumx
-def prosto_hernya(r, s1):
-    a = []
-    g=[]
-    if (r == 1):
-        sumx=int(0)
-        sumy=int(0)
-        A = int(input())
-        B = int(input())  # в результате работы данная функция
-        for i in range(s1):  # должна возвращать список в атрибут класса
-            for j in range(s1):
-                e=random.randint(A,B)
-                g.append(e)
-                a.append(g)
-                #sumx=sumx+a[i][j]
-        #for i in a:
-             #print(' '.join([str(j) for j in i]))
-    else:
-        for i in range(s1):
-            for j in range(s1):
-                e=int(input())
-                g.append(e)
-                a.append(g)
-                #sumx=sumx+a[i][j]
-        for i in a:
-             print(' '.join([str(j) for j in i]))
-    return a
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 
-k=KM(3,1)
-l=KM(2,1)
+
+
+fig_1 = plt.figure()
+ax = fig_1.add_subplot(111, projection='3d')
+samNum1 = 1000
+spConst1 = 5.0
+t = np.linspace(0,89*np.pi, samNum1)
+T, Z = np.meshgrid(t, [0,1])
+X = spConst1 * (np.cos(T) + T* np.sin(T))
+Y = spConst1 * (np.sin(T) - T * np.cos(T))
+coords = np.zeros([samNum1, 3])
+coords[:,0] = spConst1 * (np.cos(t) + t * np.sin(t)) # x coord
+coords[:,1] = spConst1 * (np.sin(t) - t * np.cos(t)) # y coord
+amp1 = 200
+sigma_x1 = -75.0
+sigma_y1 = -75.0
+theta1 = np.pi
+a1 = np.cos(theta1)**2 / (2 * sigma_x1**2) + np.sin(theta1)**2 / (2 * sigma_y1**2)
+b1 = np.sin(2 * theta1) / (4 * sigma_x1**2) - np.sin(2 * theta1) / (4 * sigma_y1**2)
+c1 = -np.sin(theta1)**2 / (2 * sigma_x1**2) + np.cos(theta1)**2 / (2 * sigma_y1**2)
+coords[:,2] = amp1 * np.exp(-(a1 * coords[:,0]**2 - 2 * b1 * coords[:,0]*coords[:,1] + c1 * coords[:,1]**2)) # z coord
+Z[1,:] = coords[:,2]
+ax.scatter(X,Y,Z)
+ax.plot_surface(coords[:,0], coords[:,0], coords[:,2],  s=1, c='k')
+ax.set_xlabel('X axis')
+ax.set_ylabel('Y axis')
+ax.set_zlabel('Z axis')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+samNum = 1000
+spConst = -5.0
+t = np.linspace(0,89*np.pi, samNum)
+T, Z = np.meshgrid(t, [0,1])
+X = spConst * (np.cos(T) + T* np.sin(T))
+Y = spConst * (np.sin(T) - T * np.cos(T))
+coords = np.zeros([samNum, 3])
+coords[:,0] = spConst * (np.cos(t) + t * np.sin(t)) # x coord
+coords[:,1] = spConst * (np.sin(t) - t * np.cos(t)) # y coord
+amp = 200
+sigma_x = -75.0
+sigma_y = -75.0
+theta = np.pi
+a = np.cos(theta)**2 / (2 * sigma_x**2) + np.sin(theta)**2 / (2 * sigma_y**2)
+b = np.sin(2 * theta) / (4 * sigma_x**2) - np.sin(2 * theta) / (4 * sigma_y**2)
+c = -np.sin(theta)**2 / (2 * sigma_x**2) + np.cos(theta)**2 / (2 * sigma_y**2)
+coords[:,2] = amp * np.exp(-(a * coords[:,0]**2 - 2 * b * coords[:,0]*coords[:,1] + c * coords[:,1]**2)) # z coord
+Z[1,:] = coords[:,2]
+ax.scatter(X,Y,Z)
+ax.plot_surface(coords[:,0], coords[:,0], coords[:,2],  s=1, c='red')
+ax.set_xlabel('X axis')
+ax.set_ylabel('Y axis')
+ax.set_zlabel('Z axis')
+plt.show()
